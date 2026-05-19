@@ -1,0 +1,53 @@
+##Crear Integrante
+curl -X POST http://api-mongo-go-production.up.railway.app/integrantes \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id_integrante_liga": "juan123",
+    "secret_pass": "123456",
+    "nombre_completo": "Juan Pérez",
+    "fotografia": "",
+    "fecha_nacimiento": "2000-01-01T00:00:00Z",
+    "auditoria_id": 1,
+    "activo": true
+  }'
+
+  ##Listar Integrantes
+  
+curl http://localhost:8080/integrantes
+
+
+##Login Integrante
+curl -X POST https://api-mongo-go-production.up.railway.app/integrantes/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id_integrante_liga": "juan123",
+    "secret_pass": "123456"
+  }'
+
+
+
+##Listar Integrantes (requiere JWT)
+curl -X GET https://api-mongo-go-production.up.railway.app/integrantes \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzkxNjY2OTMsIm5vbWJyZSI6Ikp1YW4gUMOpcmV6IiwidXNlcl9pZCI6Imp1YW4xMjMifQ.aqpfcAXh3o1rrvcCBeDoAc0e4XvvTK4IkbcM9bjhzPA"
+
+##Obtener Integrante por ID (requiere JWT)
+curl -X GET https://api-mongo-go-production.up.railway.app/integrantes/juan123 \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzkxNjY2OTMsIm5vbWJyZSI6Ikp1YW4gUMOpcmV6IiwidXNlcl9pZCI6Imp1YW4xMjMifQ.aqpfcAXh3o1rrvcCBeDoAc0e4XvvTK4IkbcM9bjhzPA"
+
+##Actualizar Integrante (requiere JWT)
+curl -X PUT https://api-mongo-go-production.up.railway.app/integrantes/juan123 \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzkxNjY2OTMsIm5vbWJyZSI6Ikp1YW4gUMOpcmV6IiwidXNlcl9pZCI6Imp1YW4xMjMifQ.aqpfcAXh3o1rrvcCBeDoAc0e4XvvTK4IkbcM9bjhzPA" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id_integrante_liga": "juan123",
+    "secret_pass": "nuevo123",
+    "nombre_completo": "Juan Pérez Actualizado",
+    "fotografia": "",
+    "fecha_nacimiento": "2000-01-01T00:00:00Z",
+    "auditoria_id": 1,
+    "activo": true
+  }'
+
+##Eliminar Integrante (requiere JWT)
+curl -X DELETE https://api-mongo-go-production.up.railway.app/integrantes/juan123 \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzkxNjY2OTMsIm5vbWJyZSI6Ikp1YW4gUMOpcmV6IiwidXNlcl9pZCI6Imp1YW4xMjMifQ.aqpfcAXh3o1rrvcCBeDoAc0e4XvvTK4IkbcM9bjhzPA"
